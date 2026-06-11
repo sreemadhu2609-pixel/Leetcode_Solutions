@@ -1,0 +1,66 @@
+Here’s the same explanation rewritten in **easy words** so anyone can follow along:
+
+---
+
+# 3558. Number of Ways to Assign Edge Weights I
+
+## 📝 Problem
+We have a tree that starts at node `1`.  
+Every edge can be given a weight of either **1** or **2**.  
+
+We only care about the path from the root (node `1`) to the **deepest node** in the tree.  
+The question is: *How many ways can we assign weights so that the total sum along that path is odd?*
+
+---
+
+## 💡 Simple Idea
+- Let’s say the longest path from root to a leaf has `L` edges.  
+- Each edge can be `1` or `2`.  
+- So there are `2^L` total ways to assign weights.  
+- Out of these, **half will give an odd sum** and half will give an even sum.  
+- That means the answer is:  
+  \[
+  2^{L-1} \pmod{10^9+7}
+  \]
+
+---
+
+## 🔎 How the code works
+1. **Build the tree**: Convert the list of edges into a graph (adjacency list).  
+2. **Find the longest path**: Use DFS (depth-first search) starting from node `1` to find the maximum depth.  
+   - Depth = number of edges from root to farthest node.  
+3. **Calculate the answer**: Use fast power function to compute \(2^{L-1}\) under modulo \(10^9+7\).
+
+---
+
+## 📊 Example
+Input:  
+```
+edges = [[1,2],[1,3],[3,4],[3,5]]
+```
+
+Steps:  
+- Longest path is `1 → 3 → 4` (or `1 → 3 → 5`).  
+- Path length = 2 edges.  
+- Total assignments = \(2^2 = 4\).  
+- Odd-cost assignments = \(2^{1} = 2\).  
+
+Output:  
+```
+2
+```
+
+---
+
+## ⚡ Complexity
+- **Time:** O(n) → DFS visits each node once.  
+- **Space:** O(n) → adjacency list storage.  
+
+---
+
+👉 In short:  
+The code finds how deep the tree goes, then uses math to figure out that exactly half of all possible weight assignments will make the sum odd. That’s why the answer is \(2^{\text{maxDepth}-1}\).
+
+---
+
+Would you like me to now create a **blank template in this same easy style** (Problem → Idea → Code steps → Example → Complexity → Short summary) so you can reuse it for every problem explanation in your repo?
